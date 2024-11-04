@@ -1,0 +1,11 @@
+.Wrapper {
+    height: 95vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+
+    margin: 15px;
+    border: 1px solid blue;
+    border-radius: 10px;
+}
