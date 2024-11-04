@@ -16,7 +16,7 @@ import { Row } from "../types.global/types.global";
 //   });
 // };
 
-export class Store {
+class GlobalStore {
   rows: Row[] = [];
   rowsCount: Number = 0;
 
@@ -36,3 +36,6 @@ export class Store {
     this.rows = this.rows.filter((item) => item.id !== rowId);
   }
 }
+const Store = new GlobalStore();
+
+export default Store;
