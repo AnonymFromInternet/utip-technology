@@ -12,9 +12,10 @@ export const Row = ({ data }: RowProps) => {
   const handleMouseDown = () => {};
 
   const renderRowCells = () => {
-    return Object.values(data).map((value) => (
-      <div key={value} className={styles.Cell}>
+    return Object.values(data).map((value, index) => (
+      <div key={index} className={styles.Cell}>
         {value}
+
         <div className={styles.Resizer} onMouseDown={handleMouseDown}></div>
       </div>
     ));

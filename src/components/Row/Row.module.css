@@ -2,11 +2,14 @@
   display: grid;
   grid-template-columns: [postId]60px [id]60px [name]100px [email]100px [body]auto;
   margin: 4px 10px 0 10px;
-
   border: 1px solid green;
   border-radius: 4px;
   align-items: center;
   background-color: blanchedalmond;
+
+  cursor: pointer;
+
+  transition: opacity 0.3 ease height 0.3 ease;
 }
 
 .Cell {
