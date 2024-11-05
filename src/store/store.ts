@@ -1,31 +1,26 @@
 import { makeAutoObservable } from "mobx";
 import { Row } from "../types.global/types.global";
+import { dataService } from "../services/getData.service";
 
-// export const useStore = () => {
-//   return makeAutoObservable({
-//     tableItemsCount: 0,
-//     tableItems: [],
-//     addRow: (newRow: Row) => {
-//       this.tableData.push(newRow);
-//     },
-//     deleteRow: (rowId: Number) => {
-//       this.tableItems = this.tableItems.filter(
-//         (item: Row) => item.id !== rowId
-//       );
-//     },
-//   });
-// };
-
-class GlobalStore {
+class TableDataStore {
   rows: Row[] = [];
   rowsCount: Number = 0;
+  error: Error | null = null;
+  isLoading: Boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setRows(responseData: Row[]) {
-    this.rows = responseData;
+  loadData() {
+    this.isLoading = true;
+
+    dataService
+      .getData()
+      .then((response) => response.json())
+      .then((jsoned) => (this.rows = jsoned))
+      .catch((e) => (this.error = e))
+      .finally(() => (this.isLoading = false));
   }
 
   addRow(newRow: Row) {
@@ -36,6 +31,15 @@ class GlobalStore {
     this.rows = this.rows.filter((item) => item.id !== rowId);
   }
 }
-const Store = new GlobalStore();
 
-export default Store;
+class RootStore {
+  tableData: TableDataStore;
+
+  constructor() {
+    this.tableData = new TableDataStore();
+  }
+}
+
+const store = new RootStore();
+
+export default store;

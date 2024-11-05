@@ -1,8 +1,6 @@
+.Table {
+  display: grid;
 
-.TableWrapper {
-    width: 100%;
-    height: 100%;
-
-    flex: 1;
-    overflow-y: auto;
+  height: 70vh;
+  overflow: scroll;
 }

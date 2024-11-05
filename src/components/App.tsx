@@ -3,23 +3,20 @@ import { Table } from "./Table/Table";
 
 import { CompanyLogo } from "./Logo/Logo";
 
+import store from "../store/store";
+import { Header } from "./Header/Header";
+
 import styles from "./App.module.css";
-import { useGetData } from "../services/useGetData.service";
-import { log } from "console";
 
 function App() {
-  // https://jsonplaceholder.typicode.com/comments
-  // https://dummyjson.com/docs/auth
-  // const { data, isLoading, error } = useGetData();
-
-  // console.log("data :", data);
-  // console.log("isLoading :", isLoading);
-  // console.log("error :", error);
-  // console.log("");
+  useEffect(() => {
+    store.tableData.loadData();
+  }, []);
 
   return (
     <div className={styles.Wrapper}>
       <CompanyLogo />
+      <Header />
       <Table />
     </div>
   );

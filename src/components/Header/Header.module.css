@@ -1,0 +1,22 @@
+.Header_Cell {
+  height: 100%;
+  border: 1px solid beige;
+  border-radius: 4px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 255, 0.3);
+
+  margin: 1px;
+}
+
+.Header {
+  display: grid;
+  grid-template-columns: 60px 60px 100px 100px auto;
+  height: 60px;
+
+  margin: 40px 10px 0px 10px;
+}

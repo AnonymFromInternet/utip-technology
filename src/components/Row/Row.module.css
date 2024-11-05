@@ -1,3 +1,26 @@
 .Row {
-    color: green;
+  display: grid;
+  grid-template-columns: [postId]60px [id]60px [name]100px [email]100px [body]auto;
+  margin: 4px 10px 0 10px;
+
+  border: 1px solid green;
+  border-radius: 4px;
+  align-items: center;
+  background-color: blanchedalmond;
+}
+
+.Cell {
+  text-align: center;
+  word-wrap: break-word;
+  padding: 5px;
+  margin: 1px;
+}
+
+.Resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  cursor: ew-resize;
+  height: 100%;
 }

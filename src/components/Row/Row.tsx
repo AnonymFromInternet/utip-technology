@@ -1,7 +1,27 @@
-import React from 'react';
+import React from "react";
 
-import styles from './Row.module.css'
+import styles from "./Row.module.css";
+import { Row as RowInterface } from "../../types.global/types.global";
 
-export const Row = () => {
-    return <div className={styles['Row']}>Row</div>
+interface RowProps {
+  data: RowInterface;
 }
+
+export const Row = ({ data }: RowProps) => {
+  const handleMouseUp = () => {};
+  const handleMouseDown = () => {};
+
+  const renderRowCells = () => {
+    return Object.values(data).map((value) => (
+      <div key={value} className={styles.Cell}>
+        {value}
+        <div className={styles.Resizer} onMouseDown={handleMouseDown}></div>
+      </div>
+    ));
+  };
+  return (
+    <div className={styles.Row} onMouseUp={handleMouseUp}>
+      {renderRowCells()}
+    </div>
+  );
+};
