@@ -57,6 +57,18 @@ class TableDataStore {
     }
   }
 
+  updateRows = () => {
+    const startIndex = (this.page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+
+    this.rows = this.allRows.slice(startIndex, endIndex);
+  };
+
+  setPage = (page: number) => {
+    this.page = page;
+    this.updateRows();
+  };
+
   loadData = () => {
     this.clearPrevData();
     this.isLoading = true;
@@ -104,6 +116,7 @@ class TableDataStore {
   clearRows = () => {
     this.rows = [];
     this.allRows = [];
+    this.rowsCount = 0;
   };
 
   sortRows = (field: keyof Row) => {

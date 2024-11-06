@@ -1,7 +1,8 @@
-import styles from "./Modal.module.css";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
 import { MouseEvent } from "react";
+
+import styles from "./Modal.module.css";
 
 export const Modal = observer(() => {
   const { confirm, cancel, isActive, message } = store.modalData;

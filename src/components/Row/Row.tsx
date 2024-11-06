@@ -4,8 +4,9 @@ import { Row as RowInterface } from "../../types.global/types.global";
 import { observer } from "mobx-react-lite";
 import store from "../../store/store";
 
-import styles from "./Row.module.css";
 import { columns } from "../../constants/constants";
+
+import styles from "./Row.module.css";
 
 interface RowProps {
   data: RowInterface;

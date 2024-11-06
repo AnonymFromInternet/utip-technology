@@ -1,11 +1,12 @@
 import React from "react";
 
-import styles from "./Header.module.css";
 import store from "../../store/store";
 import { Row } from "../../types.global/types.global";
 import { observer } from "mobx-react-lite";
 import { useLocation, useNavigate } from "react-router-dom";
 import { columns } from "../../constants/constants";
+
+import styles from "./Header.module.css";
 
 export const Header = observer(() => {
   const navigate = useNavigate();

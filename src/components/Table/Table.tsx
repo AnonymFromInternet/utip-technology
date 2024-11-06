@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import styles from "./Table.module.css";
 import store from "../../store/store";
 import { Key, useEffect } from "react";
 import { Row } from "../Row/Row";
@@ -8,6 +7,8 @@ import { Loader } from "../Loader/Loader";
 import { dataService } from "../../services/data.service";
 import { Modal } from "../Modal/Modal";
 import { Error } from "../Error/Error";
+
+import styles from "./Table.module.css";
 
 export const Table = observer(() => {
   const { rows, isLoading, allRows, error } = store.tableData;
@@ -32,7 +33,7 @@ export const Table = observer(() => {
       {isLoading && <Loader />}
       {!isLoading && error && <Error message={error.message} />}
       {rows.length === 0 && !isLoading ? <EmptyTableMessage /> : renderRows()}
-      {<Modal />}
+      <Modal />
     </div>
   );
 });

@@ -1,4 +1,5 @@
 import store from "../../store/store";
+
 import styles from "./EmptyTableMessage.module.css";
 
 export const EmptyTableMessage = () => {
