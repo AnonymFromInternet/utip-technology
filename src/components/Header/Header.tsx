@@ -14,7 +14,15 @@ const headerColumns = [
 ];
 
 export const Header = observer(() => {
-  const { sortRows, clearRows, rows } = store.tableData;
+  const { sortRows, rows, clearRows } = store.tableData;
+  const { showModal } = store.modalData;
+
+  const onClearRows = () => {
+    showModal({
+      message: "Все данные будут удалены из таблицы. Вы уверены?",
+      method: clearRows,
+    });
+  };
 
   const addNewRow = () => {
     // redirect into /addNewRow page
@@ -35,7 +43,7 @@ export const Header = observer(() => {
     <>
       <div className={styles.Buttons}>
         {rows.length !== 0 && (
-          <button className={styles.ClearTableButton} onClick={clearRows}>
+          <button className={styles.ClearTableButton} onClick={onClearRows}>
             Очистить таблицу
           </button>
         )}

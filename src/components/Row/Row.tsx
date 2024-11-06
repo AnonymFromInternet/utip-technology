@@ -5,24 +5,24 @@ import { observer } from "mobx-react-lite";
 import store from "../../store/store";
 
 import styles from "./Row.module.css";
-import { Modal } from "../Modal/Modal";
 
 interface RowProps {
   data: RowInterface;
 }
 
 export const Row = observer(({ data }: RowProps) => {
-  const { chooseRow, chosenRowId, isModalActive, toggleModal } =
-    store.tableData;
+  const { chooseRow, chosenRowId, deleteRow } = store.tableData;
 
   const handleMouseUp = () => {};
   const handleMouseDown = () => {};
-  const openModal = () => {};
 
   const handleOnDelete = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    toggleModal(true);
-    openModal();
+
+    store.modalData.showModal({
+      message: "Данные будут удалены. Вы уверены?",
+      method: deleteRow,
+    });
   };
 
   const renderRowCells = () => {
@@ -48,7 +48,6 @@ export const Row = observer(({ data }: RowProps) => {
           Удалить
         </button>
       )}
-      {isModalActive && <Modal message={"Данные будут удалены. Вы уверены?"} />}
     </div>
   );
 });

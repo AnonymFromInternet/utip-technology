@@ -6,6 +6,7 @@ import { Row } from "../Row/Row";
 import { EmptyTableMessage } from "../EmptyTableMessage/EmptyTableMessage";
 import { Loader } from "../Loader/Loader";
 import { dataService } from "../../services/data.service";
+import { Modal } from "../Modal/Modal";
 
 export const Table = observer(() => {
   const { rows, isLoading, allRows } = store.tableData;
@@ -29,6 +30,7 @@ export const Table = observer(() => {
     <div className={styles.Table}>
       {isLoading && <Loader />}
       {rows.length === 0 && !isLoading ? <EmptyTableMessage /> : renderRows()}
+      {<Modal />}
     </div>
   );
 });

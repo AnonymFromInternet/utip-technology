@@ -1,5 +1,5 @@
 .Modal {
-  display: flex;
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -11,20 +11,22 @@
   align-items: center;
 }
 
+.ModalActive {
+  display: flex;
+}
+
 .ModalContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 1);
   border-radius: 6px;
-  margin: 15% auto;
   padding: 20px;
-  border: 1px solid rgba(255, 0, 0, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.6);
   width: 40%;
   height: 20%;
   text-align: center;
-  color: beige;
 }
 
 .Close {
@@ -57,9 +59,9 @@
 .DeleteButton {
   width: 150px;
   height: 50px;
-  border: 1px solid rgba(255, 0, 0, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.8);
   border-radius: 4px;
-  background-color: rgba(255, 0, 0, 0.03);
+  background-color: rgba(255, 0, 0, 0.2);
   cursor: pointer;
   margin-right: 4px;
 

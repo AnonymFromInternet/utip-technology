@@ -1,41 +1,38 @@
 import styles from "./Modal.module.css";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
-import { MouseEvent, MouseEventHandler } from "react";
+import { MouseEvent } from "react";
 
-interface ModalProps {
-  message: string;
-  messageColor?: string;
-  backgroundColor?: string;
-}
+export const Modal = observer(() => {
+  const { confirm, cancel, isActive, message } = store.modalData;
 
-export const Modal = observer(({ message }: ModalProps) => {
-  const { deleteRow, toggleModal } = store.tableData;
-  const onDeleteRow = (event: MouseEvent<HTMLButtonElement>) => {
+  const onConfirm = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    deleteRow();
+    confirm();
   };
-  const onCancelDelete = (
+
+  const onCancel = (
     event: MouseEvent<HTMLButtonElement> | MouseEvent<HTMLDivElement>
   ) => {
     event.stopPropagation();
-    toggleModal(false);
+    cancel();
   };
+
   return (
-    <div className={styles.Modal} onClick={(event) => onCancelDelete(event)}>
+    <div
+      className={`${styles.Modal} ${isActive && styles.ModalActive}`}
+      onClick={(event) => onCancel(event)}
+    >
       <div
         className={styles.ModalContent}
         onClick={(e: MouseEvent) => e.stopPropagation()}
       >
         <p className={styles.Message}>{message}</p>
         <div className={styles.ButtonsWrapper}>
-          <button onClick={onDeleteRow} className={styles.DeleteButton}>
+          <button onClick={onConfirm} className={styles.DeleteButton}>
             Да, удалить!
           </button>
-          <button
-            onClick={onCancelDelete}
-            className={styles.CancelDeleteButton}
-          >
+          <button onClick={onCancel} className={styles.CancelDeleteButton}>
             Отменить удаление
           </button>
         </div>

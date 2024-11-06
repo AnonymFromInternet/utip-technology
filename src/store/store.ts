@@ -2,6 +2,31 @@ import { makeAutoObservable } from "mobx";
 import { Row } from "../types.global/types.global";
 import { dataService } from "../services/data.service";
 
+class ModalStore {
+  isActive: boolean = false;
+  message: string = "";
+  method: (data?: any) => void = () => {};
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  showModal = (props: { message: string; method: (data?: any) => void }) => {
+    this.message = props.message;
+    this.method = props.method;
+    this.isActive = true;
+  };
+
+  confirm = () => {
+    this.method();
+    this.isActive = false;
+  };
+
+  cancel = () => {
+    this.isActive = false;
+  };
+}
+
 class TableDataStore {
   allRows: Row[] = [];
   rows: Row[] = [];
@@ -103,17 +128,15 @@ class TableDataStore {
     }
     this.chosenRowId = rowId;
   };
-
-  toggleModal = (status: boolean) => {
-    this.isModalActive = status;
-  };
 }
 
 class RootStore {
   tableData: TableDataStore;
+  modalData: ModalStore;
 
   constructor() {
     this.tableData = new TableDataStore();
+    this.modalData = new ModalStore();
   }
 }
 
