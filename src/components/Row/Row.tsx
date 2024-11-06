@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 import store from "../../store/store";
 
 import styles from "./Row.module.css";
+import { columns } from "../../constants/constants";
 
 interface RowProps {
   data: RowInterface;
@@ -26,13 +27,15 @@ export const Row = observer(({ data }: RowProps) => {
   };
 
   const renderRowCells = () => {
-    return Object.values(data).map((value, index) => (
-      <div key={index} className={styles.Cell}>
-        {value}
+    return columns.map((column, index) => {
+      return (
+        <div key={index} className={styles.Cell}>
+          {data[column.field as keyof RowInterface]}
 
-        <div className={styles.Resizer} onMouseDown={handleMouseDown}></div>
-      </div>
-    ));
+          <div className={styles.Resizer} onMouseDown={handleMouseDown}></div>
+        </div>
+      );
+    });
   };
   return (
     <div

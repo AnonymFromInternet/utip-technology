@@ -1,8 +1,9 @@
+import { DataURL } from "../constants/constants";
 import { Row } from "../types.global/types.global";
 
 class DataService {
   getData() {
-    return fetch("https://jsonplaceholder.typicode.com/comments");
+    return fetch(DataURL);
   }
 
   getDataFromLocalstorage(): Row[] {

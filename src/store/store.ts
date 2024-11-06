@@ -89,7 +89,9 @@ class TableDataStore {
   };
 
   addRow = (newRow: Row) => {
-    this.rows.push(newRow);
+    this.rows.unshift(newRow);
+    this.rows.pop();
+    this.allRows.unshift(newRow);
   };
 
   deleteRow = () => {

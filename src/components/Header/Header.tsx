@@ -4,18 +4,12 @@ import styles from "./Header.module.css";
 import store from "../../store/store";
 import { Row } from "../../types.global/types.global";
 import { observer } from "mobx-react-lite";
-import { Navigate, useNavigate } from "react-router-dom";
-
-const headerColumns = [
-  { name: "PostId", field: "postId" },
-  { name: "Id", field: "id" },
-  { name: "Name", field: "name" },
-  { name: "Email", field: "email" },
-  { name: "Body", field: "body" },
-];
+import { useLocation, useNavigate } from "react-router-dom";
+import { columns } from "../../constants/constants";
 
 export const Header = observer(() => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { sortRows, rows, clearRows } = store.tableData;
   const { showModal } = store.modalData;
@@ -28,7 +22,7 @@ export const Header = observer(() => {
   };
 
   const renderCells = () => {
-    return headerColumns.map((column, index) => (
+    return columns.map((column, index) => (
       <div
         key={index}
         className={styles.HeaderCell}
@@ -42,7 +36,11 @@ export const Header = observer(() => {
     <>
       <div className={styles.Buttons}>
         {rows.length !== 0 && (
-          <button className={styles.ClearTableButton} onClick={onClearRows}>
+          <button
+            className={styles.ClearTableButton}
+            onClick={onClearRows}
+            disabled={location.pathname.includes("addNewRow")}
+          >
             Очистить таблицу
           </button>
         )}
@@ -50,6 +48,7 @@ export const Header = observer(() => {
         <button
           className={styles.AddNewRowButton}
           onClick={() => navigate("/addNewRow")}
+          disabled={location.pathname.includes("addNewRow")}
         >
           Добавить данные в таблицу
         </button>
