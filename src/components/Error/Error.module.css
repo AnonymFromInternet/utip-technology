@@ -1,0 +1,18 @@
+.Wrapper {
+  width: 80%;
+  height: 60%;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Message {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  color: red;
+  margin-bottom: 30px;
+}

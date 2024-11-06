@@ -90,7 +90,9 @@ class TableDataStore {
 
   addRow = (newRow: Row) => {
     this.rows.unshift(newRow);
-    this.rows.pop();
+    if (this.rows.length > 10) {
+      this.rows.pop();
+    }
     this.allRows.unshift(newRow);
   };
 

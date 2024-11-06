@@ -38,6 +38,10 @@ export const AddNewRow = () => {
     return false;
   };
 
+  const onBackToTable = () => {
+    navigate("/");
+  };
+
   const onAddNewRow = async () => {
     const newRow: Row = {
       id: +id,
@@ -92,13 +96,17 @@ export const AddNewRow = () => {
           onChange={(event) => setBody(event.currentTarget.value)}
         />
       </div>
+
       <div className={styles.ButtonWrapper}>
+        <button className={styles.BackToTheTableButton} onClick={onBackToTable}>
+          Назад к таблице
+        </button>
         <button
-          className={styles.Button}
+          className={styles.SaveButton}
           onClick={onAddNewRow}
           disabled={validateFields()}
         >
-          Добавить новые данные в таблиццу
+          Добавить новые данные в таблицу
         </button>
       </div>
 

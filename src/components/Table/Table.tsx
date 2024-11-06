@@ -7,9 +7,10 @@ import { EmptyTableMessage } from "../EmptyTableMessage/EmptyTableMessage";
 import { Loader } from "../Loader/Loader";
 import { dataService } from "../../services/data.service";
 import { Modal } from "../Modal/Modal";
+import { Error } from "../Error/Error";
 
 export const Table = observer(() => {
-  const { rows, isLoading, allRows } = store.tableData;
+  const { rows, isLoading, allRows, error } = store.tableData;
 
   useEffect(() => {
     const handleBeforeUnload = (event: Event) => {
@@ -27,9 +28,14 @@ export const Table = observer(() => {
     return rows.map((row) => <Row key={row.id as Key} data={row}></Row>);
   };
   return (
-    <div className={styles.Table}>
+    <div className={`${styles.EmptyTable} ${rows.length > 0 && styles.Table} `}>
       {isLoading && <Loader />}
-      {rows.length === 0 && !isLoading ? <EmptyTableMessage /> : renderRows()}
+      {!isLoading && error && <Error message={error.message} />}
+      {rows.length === 0 && !isLoading && !error ? (
+        <EmptyTableMessage />
+      ) : (
+        renderRows()
+      )}
       {<Modal />}
     </div>
   );

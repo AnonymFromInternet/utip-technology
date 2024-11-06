@@ -1,6 +1,9 @@
 .Table {
-  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(50px, 100px));
+}
 
+.EmptyTable {
+  display: grid;
   height: 70vh;
   overflow: scroll;
 }
