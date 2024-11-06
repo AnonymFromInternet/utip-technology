@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useCallback } from "react";
 
 import { Row as RowInterface } from "../../types.global/types.global";
 import { observer } from "mobx-react-lite";
@@ -15,14 +15,14 @@ interface RowProps {
 export const Row = observer(({ data }: RowProps) => {
   const { chooseRow, chosenRowId, deleteRow } = store.tableData;
 
-  const handleOnDelete = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleOnDelete = useCallback((event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
     store.modalData.showModal({
       message: "Данные будут удалены. Вы уверены?",
       method: deleteRow,
     });
-  };
+  }, []);
 
   const renderRowCells = () => {
     return columns.map((column, index) => {

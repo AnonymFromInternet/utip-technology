@@ -26,13 +26,20 @@ export const Table = observer(() => {
   }, [allRows]);
 
   const renderRows = () => {
+    if (error) {
+      return null;
+    }
     return rows.map((row) => <Row key={row.id as Key} data={row}></Row>);
   };
   return (
     <div className={styles.Table}>
       {isLoading && <Loader />}
       {!isLoading && error && <Error message={error.message} />}
-      {rows.length === 0 && !isLoading ? <EmptyTableMessage /> : renderRows()}
+      {!error && rows.length === 0 && !isLoading ? (
+        <EmptyTableMessage />
+      ) : (
+        renderRows()
+      )}
       <Modal />
     </div>
   );
