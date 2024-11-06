@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/utip-technology/static/css/main.b4091889.css",
+    "main.js": "/utip-technology/static/js/main.fd60d322.js",
+    "static/js/453.871fd2ea.chunk.js": "/utip-technology/static/js/453.871fd2ea.chunk.js",
+    "static/media/utip-logo.svg": "/utip-technology/static/media/utip-logo.21aad12ad4d483fc3288aa9f0f0639c6.svg",
+    "index.html": "/utip-technology/index.html",
+    "main.b4091889.css.map": "/utip-technology/static/css/main.b4091889.css.map",
+    "main.fd60d322.js.map": "/utip-technology/static/js/main.fd60d322.js.map",
+    "453.871fd2ea.chunk.js.map": "/utip-technology/static/js/453.871fd2ea.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b4091889.css",
+    "static/js/main.fd60d322.js"
+  ]
+}
