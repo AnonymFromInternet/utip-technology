@@ -51,6 +51,7 @@ class TableDataStore {
     const savedAllRows = dataService.getDataFromLocalstorage();
     if (savedAllRows.length > 0) {
       this.allRows = savedAllRows;
+      this.rowsCount = savedAllRows.length;
       for (let index = 0; index < this.itemsPerPage; index++) {
         this.rows[index] = savedAllRows[index];
       }
@@ -80,6 +81,7 @@ class TableDataStore {
       }
 
       this.isLoading = false;
+
       return;
     }
 

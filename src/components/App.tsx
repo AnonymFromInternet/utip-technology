@@ -5,11 +5,10 @@ import { Header } from "./Header/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AddNewRow } from "./AddNewRow/AddNewRow";
 import { Paginator } from "./Paginator/Paginator";
-import { observer } from "mobx-react-lite";
 
 import styles from "./App.module.css";
 
-const App = observer(() => {
+function App() {
   return (
     <div className={styles.Wrapper}>
       <CompanyLogo />
@@ -24,6 +23,6 @@ const App = observer(() => {
       </BrowserRouter>
     </div>
   );
-});
+}
 
 export default App;

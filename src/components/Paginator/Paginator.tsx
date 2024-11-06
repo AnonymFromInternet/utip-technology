@@ -9,7 +9,7 @@ export const Paginator = observer(() => {
   const { rowsCount, itemsPerPage, page, setPage } = store.tableData;
   const pageCount = Math.ceil(rowsCount / itemsPerPage);
 
-  if (location.pathname.includes("/addNewRow")) {
+  if (location.pathname.includes("addNewRow")) {
     return null;
   }
 
