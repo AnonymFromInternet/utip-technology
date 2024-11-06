@@ -35,11 +35,7 @@ export const Table = observer(() => {
     <div className={styles.Table}>
       {isLoading && <Loader />}
       {!isLoading && error && <Error message={error.message} />}
-      {!error && rows.length === 0 && !isLoading ? (
-        <EmptyTableMessage />
-      ) : (
-        renderRows()
-      )}
+      {rows.length === 0 && !isLoading ? <EmptyTableMessage /> : renderRows()}
       <Modal />
     </div>
   );
