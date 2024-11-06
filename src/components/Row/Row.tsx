@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useEffect, useRef } from "react";
 
 import { Row as RowInterface } from "../../types.global/types.global";
 import { observer } from "mobx-react-lite";
@@ -15,9 +15,6 @@ interface RowProps {
 export const Row = observer(({ data }: RowProps) => {
   const { chooseRow, chosenRowId, deleteRow } = store.tableData;
 
-  const handleMouseUp = () => {};
-  const handleMouseDown = () => {};
-
   const handleOnDelete = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
@@ -33,7 +30,7 @@ export const Row = observer(({ data }: RowProps) => {
         <div key={index} className={styles.Cell}>
           {data[column.field as keyof RowInterface]}
 
-          <div className={styles.Resizer} onMouseDown={handleMouseDown}></div>
+          <div className={styles.Resizer}></div>
         </div>
       );
     });
@@ -43,7 +40,6 @@ export const Row = observer(({ data }: RowProps) => {
       className={`${styles.Row} ${
         data.id === chosenRowId ? styles.ChosenRow : ""
       }`}
-      onMouseUp={handleMouseUp}
       onClick={() => chooseRow(data.id)}
     >
       {renderRowCells()}
