@@ -13,9 +13,9 @@ function App() {
   return (
     <div className={styles.Wrapper}>
       <CompanyLogo />
-      <Header />
 
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Table />}></Route>
           <Route path="addNewRow" element={<AddNewRow />}></Route>

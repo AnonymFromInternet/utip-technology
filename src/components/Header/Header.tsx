@@ -4,6 +4,7 @@ import styles from "./Header.module.css";
 import store from "../../store/store";
 import { Row } from "../../types.global/types.global";
 import { observer } from "mobx-react-lite";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const headerColumns = [
   { name: "PostId", field: "postId" },
@@ -14,6 +15,8 @@ const headerColumns = [
 ];
 
 export const Header = observer(() => {
+  const navigate = useNavigate();
+
   const { sortRows, rows, clearRows } = store.tableData;
   const { showModal } = store.modalData;
 
@@ -22,10 +25,6 @@ export const Header = observer(() => {
       message: "Все данные будут удалены из таблицы. Вы уверены?",
       method: clearRows,
     });
-  };
-
-  const addNewRow = () => {
-    // redirect into /addNewRow page
   };
 
   const renderCells = () => {
@@ -48,7 +47,10 @@ export const Header = observer(() => {
           </button>
         )}
 
-        <button className={styles.AddNewRowButton} onClick={addNewRow}>
+        <button
+          className={styles.AddNewRowButton}
+          onClick={() => navigate("/addNewRow")}
+        >
           Добавить данные в таблицу
         </button>
       </div>
