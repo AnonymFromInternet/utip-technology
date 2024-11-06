@@ -1,7 +1,7 @@
 export interface Row {
-  id: Number;
-  postId: Number;
-  name: String;
-  body: String;
-  email: String;
+  id: number;
+  postId: number;
+  name: string;
+  body: string;
+  email: string;
 }

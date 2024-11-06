@@ -14,15 +14,7 @@ const headerColumns = [
 ];
 
 export const Header = observer(() => {
-  const { tableData } = store;
-
-  const sortTableByHeader = (cellType: string) => {
-    tableData.sortRows(cellType as keyof Row);
-  };
-
-  const clearTable = () => {
-    tableData.clearRows();
-  };
+  const { sortRows, clearRows, rows } = store.tableData;
 
   const addNewRow = () => {
     // redirect into /addNewRow page
@@ -33,7 +25,7 @@ export const Header = observer(() => {
       <div
         key={index}
         className={styles.HeaderCell}
-        onClick={() => sortTableByHeader(column.field)}
+        onClick={() => sortRows(column.field as keyof Row)}
       >
         {column.name}
       </div>
@@ -42,8 +34,8 @@ export const Header = observer(() => {
   return (
     <>
       <div className={styles.Buttons}>
-        {tableData.rows.length !== 0 && (
-          <button className={styles.ClearTableButton} onClick={clearTable}>
+        {rows.length !== 0 && (
+          <button className={styles.ClearTableButton} onClick={clearRows}>
             Очистить таблицу
           </button>
         )}

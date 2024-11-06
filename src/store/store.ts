@@ -10,6 +10,8 @@ class TableDataStore {
   isLoading: boolean = false;
   page: number = 1;
   itemsPerPage: number = 10;
+  chosenRowId: number = -1;
+  isModalActive: boolean = false;
 
   isFieldSorted: Record<string, boolean> = {
     postId: true,
@@ -31,7 +33,7 @@ class TableDataStore {
     }
   }
 
-  loadData() {
+  loadData = () => {
     this.isLoading = true;
     const savedAllRows = dataService.getDataFromLocalstorage();
     if (savedAllRows.length > 0) {
@@ -59,22 +61,24 @@ class TableDataStore {
       })
       .catch((e) => (this.error = e))
       .finally(() => (this.isLoading = false));
-  }
+  };
 
-  addRow(newRow: Row) {
+  addRow = (newRow: Row) => {
     this.rows.push(newRow);
-  }
+  };
 
-  deleteRow(rowId: number) {
-    this.rows = this.rows.filter((item) => item.id !== rowId);
-  }
+  deleteRow = () => {
+    this.rows = this.rows.filter((item) => item.id !== this.chosenRowId);
+    this.allRows = this.allRows.filter((item) => item.id !== this.chosenRowId);
+    this.isModalActive = false;
+  };
 
-  clearRows() {
+  clearRows = () => {
     this.rows = [];
     this.allRows = [];
-  }
+  };
 
-  sortRows(field: keyof Row) {
+  sortRows = (field: keyof Row) => {
     const ascending = this.isFieldSorted[field];
 
     this.rows.sort((a, b) => {
@@ -90,7 +94,19 @@ class TableDataStore {
     });
 
     this.isFieldSorted[field] = !this.isFieldSorted[field];
-  }
+  };
+
+  chooseRow = (rowId: number) => {
+    if (rowId === this.chosenRowId) {
+      this.chosenRowId = -1;
+      return;
+    }
+    this.chosenRowId = rowId;
+  };
+
+  toggleModal = (status: boolean) => {
+    this.isModalActive = status;
+  };
 }
 
 class RootStore {

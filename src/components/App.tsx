@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Table } from "./Table/Table";
 
 import { CompanyLogo } from "./Logo/Logo";

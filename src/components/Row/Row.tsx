@@ -1,15 +1,29 @@
-import React from "react";
+import React, { MouseEvent } from "react";
+
+import { Row as RowInterface } from "../../types.global/types.global";
+import { observer } from "mobx-react-lite";
+import store from "../../store/store";
 
 import styles from "./Row.module.css";
-import { Row as RowInterface } from "../../types.global/types.global";
+import { Modal } from "../Modal/Modal";
 
 interface RowProps {
   data: RowInterface;
 }
 
-export const Row = ({ data }: RowProps) => {
+export const Row = observer(({ data }: RowProps) => {
+  const { chooseRow, chosenRowId, isModalActive, toggleModal } =
+    store.tableData;
+
   const handleMouseUp = () => {};
   const handleMouseDown = () => {};
+  const openModal = () => {};
+
+  const handleOnDelete = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    toggleModal(true);
+    openModal();
+  };
 
   const renderRowCells = () => {
     return Object.values(data).map((value, index) => (
@@ -21,8 +35,20 @@ export const Row = ({ data }: RowProps) => {
     ));
   };
   return (
-    <div className={styles.Row} onMouseUp={handleMouseUp}>
+    <div
+      className={`${styles.Row} ${
+        data.id === chosenRowId ? styles.ChosenRow : ""
+      }`}
+      onMouseUp={handleMouseUp}
+      onClick={() => chooseRow(data.id)}
+    >
       {renderRowCells()}
+      {chosenRowId === data.id && (
+        <button className={styles.DeleteButton} onClick={handleOnDelete}>
+          Удалить
+        </button>
+      )}
+      {isModalActive && <Modal message={"Данные будут удалены. Вы уверены?"} />}
     </div>
   );
-};
+});
