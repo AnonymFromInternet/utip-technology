@@ -39,7 +39,7 @@ export const AddNewRow = () => {
   };
 
   const onBackToTable = () => {
-    navigate("/");
+    navigate("/utip-technology");
   };
 
   const onAddNewRow = async () => {
@@ -57,7 +57,7 @@ export const AddNewRow = () => {
 
     setIsMessageVisible(false);
 
-    navigate("/");
+    navigate("/utip-technology");
   };
 
   return (
