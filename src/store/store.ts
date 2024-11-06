@@ -36,7 +36,6 @@ class TableDataStore {
   page: number = 1;
   itemsPerPage: number = 10;
   chosenRowId: number = -1;
-  isModalActive: boolean = false;
 
   isFieldSorted: Record<string, boolean> = {
     postId: true,
@@ -59,6 +58,7 @@ class TableDataStore {
   }
 
   loadData = () => {
+    this.clearPrevData();
     this.isLoading = true;
     const savedAllRows = dataService.getDataFromLocalstorage();
     if (savedAllRows.length > 0) {
@@ -99,7 +99,6 @@ class TableDataStore {
   deleteRow = () => {
     this.rows = this.rows.filter((item) => item.id !== this.chosenRowId);
     this.allRows = this.allRows.filter((item) => item.id !== this.chosenRowId);
-    this.isModalActive = false;
   };
 
   clearRows = () => {
@@ -131,6 +130,11 @@ class TableDataStore {
       return;
     }
     this.chosenRowId = rowId;
+  };
+
+  clearPrevData = () => {
+    this.error = null;
+    this.chosenRowId = -1;
   };
 }
 

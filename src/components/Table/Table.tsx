@@ -28,7 +28,7 @@ export const Table = observer(() => {
     return rows.map((row) => <Row key={row.id as Key} data={row}></Row>);
   };
   return (
-    <div className={`${styles.EmptyTable} ${rows.length > 0 && styles.Table} `}>
+    <div className={styles.Table}>
       {isLoading && <Loader />}
       {!isLoading && error && <Error message={error.message} />}
       {rows.length === 0 && !isLoading ? <EmptyTableMessage /> : renderRows()}
