@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Table />}></Route>
+          <Route path="/utip-technology" element={<Table />}></Route>
           <Route path="addNewRow" element={<AddNewRow />}></Route>
         </Routes>
         <Paginator />
