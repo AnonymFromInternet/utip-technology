@@ -1,11 +1,33 @@
-# This is the solution for [UTIP-Technology](https://www.utip.ru/)
+## UTIP Technology
 
-## Next open source libraries are used:
+### This is the solution for company [Utip Technology](<(https://www.utip.ru/)>)
 
-### [React](https://react.dev/)
+### Built with
 
-### [React-Router](https://reactrouter.com/en/main)
+[![React][React.js]][React-url]
 
-### [MobX](https://mobx.js.org/README.html)
+#### [React-Router](https://reactrouter.com/en/main)
 
-## Written in [TypeScript](https://www.typescriptlang.org/)
+#### [MobX](https://mobx.js.org/README.html)
+
+### Written in
+
+[![TypeScript]][TypeScript]
+
+### Install and Run
+
+#### To run this project You have to have Node.Js
+
+#### [Download Node.Js](https://nodejs.org/en) and install it
+
+#### Then clone this repository via
+
+`git clone https://github.com/AnonymFromInternet/utip-technology.git`
+
+#### And run `npm i`
+
+#### Then `npm start`
+
+[React.js]: https://img.icons8.com/?size=100&id=lVitPDXqQKP8&format=png&color=000000
+[React-url]: https://react.dev/
+[TypeScript]: https://img.icons8.com/?size=100&id=Xf1sHBmY73hA&format=png&color=000000
