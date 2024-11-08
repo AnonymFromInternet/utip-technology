@@ -58,6 +58,21 @@ class TableDataStore {
     }
   }
 
+  moveRow = (draggedIndex: number, targetIndex: number) => {
+    const draggedRow = this.rows[draggedIndex];
+    const updatedRows = [...this.rows];
+    const updatedAllRows = [...this.allRows];
+
+    updatedRows.splice(draggedIndex, 1);
+    updatedRows.splice(targetIndex, 0, draggedRow);
+
+    updatedAllRows.splice(draggedIndex, 1);
+    updatedAllRows.splice(targetIndex, 0, draggedRow);
+
+    this.rows = updatedRows;
+    this.allRows = updatedAllRows;
+  };
+
   updateRows = () => {
     const startIndex = (this.page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;

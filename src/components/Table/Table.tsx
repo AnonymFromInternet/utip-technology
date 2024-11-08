@@ -29,7 +29,7 @@ export const Table = observer(() => {
     if (error) {
       return null;
     }
-    return rows.map((row) => <Row key={row.id as Key} data={row}></Row>);
+    return rows.map((row, index) => <Row key={row.id as Key} data={row} index={index}></Row>);
   };
   return (
     <div className={styles.Table}>

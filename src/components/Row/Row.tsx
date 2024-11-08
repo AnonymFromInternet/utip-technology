@@ -1,19 +1,47 @@
-import React, { MouseEvent, useCallback } from "react";
+import React, { MouseEvent, useCallback, useRef, DragEvent } from "react";
 
 import { Row as RowInterface } from "../../types.global/types.global";
 import { observer } from "mobx-react-lite";
 import store from "../../store/store";
 
-import { columns } from "../../constants/constants";
-
 import styles from "./Row.module.css";
+import { Cells } from "../Cells/Cells";
 
 interface RowProps {
   data: RowInterface;
+  index: number;
 }
 
-export const Row = observer(({ data }: RowProps) => {
-  const { chooseRow, chosenRowId, deleteRow } = store.tableData;
+export const Row = observer(({ data, index }: RowProps) => {
+  const { chooseRow, chosenRowId, deleteRow, moveRow } = store.tableData;
+  const rowRef = useRef<HTMLDivElement | null>(null);
+
+  const onDragEnd = () => {
+    console.log("onDragEnd()");
+  };
+
+  const onDragStart = (event: DragEvent) => {
+    console.log("onStart");
+    event.stopPropagation();
+
+    event.dataTransfer.setData("text/plain", "" + index);
+  };
+
+  const onDragOver = (event: DragEvent) => {
+    console.log("onDragOver()");
+
+    event.preventDefault();
+  };
+
+  const onDrop = (event: DragEvent) => {
+    event.preventDefault();
+    console.log("onDrop()");
+
+    const draggedIndex = event.dataTransfer.getData("text/plain");
+    if (+draggedIndex !== index) {
+      moveRow(+draggedIndex, index);
+    }
+  };
 
   const handleOnDelete = useCallback((event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -24,25 +52,20 @@ export const Row = observer(({ data }: RowProps) => {
     });
   }, []);
 
-  const renderRowCells = () => {
-    return columns.map((column, index) => {
-      return (
-        <div key={index} className={styles.Cell}>
-          {data[column.field as keyof RowInterface]}
-
-          <div className={styles.Resizer}></div>
-        </div>
-      );
-    });
-  };
   return (
     <div
       className={`${styles.Row} ${
         data.id === chosenRowId ? styles.ChosenRow : ""
       }`}
       onClick={() => chooseRow(data.id)}
+      draggable
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+      ref={rowRef}
     >
-      {renderRowCells()}
+      <Cells data={data} />
       {chosenRowId === data.id && (
         <button className={styles.DeleteButton} onClick={handleOnDelete}>
           Удалить
@@ -51,3 +74,5 @@ export const Row = observer(({ data }: RowProps) => {
     </div>
   );
 });
+
+Row.displayName = "Row";
