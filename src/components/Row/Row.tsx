@@ -16,26 +16,18 @@ export const Row = observer(({ data, index }: RowProps) => {
   const { chooseRow, chosenRowId, deleteRow, moveRow } = store.tableData;
   const rowRef = useRef<HTMLDivElement | null>(null);
 
-  const onDragEnd = () => {
-    console.log("onDragEnd()");
-  };
-
   const onDragStart = (event: DragEvent) => {
-    console.log("onStart");
     event.stopPropagation();
 
     event.dataTransfer.setData("text/plain", "" + index);
   };
 
   const onDragOver = (event: DragEvent) => {
-    console.log("onDragOver()");
-
     event.preventDefault();
   };
 
   const onDrop = (event: DragEvent) => {
     event.preventDefault();
-    console.log("onDrop()");
 
     const draggedIndex = event.dataTransfer.getData("text/plain");
     if (+draggedIndex !== index) {
@@ -60,7 +52,6 @@ export const Row = observer(({ data, index }: RowProps) => {
       onClick={() => chooseRow(data.id)}
       draggable
       onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
       onDragOver={onDragOver}
       onDrop={onDrop}
       ref={rowRef}
